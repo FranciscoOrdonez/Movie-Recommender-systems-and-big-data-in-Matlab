@@ -2,19 +2,37 @@
 clear;
 dataset = 'ml-10m';
 fname = 'movie-ratings.zip';
-% move dataset ml-10m and save into disk
+
+% move dataset ml-10m and save into disk file: movie-ratings.zip
 websave(fname,['http://files.grouplens.org/datasets/movielens/',dataset,'.zip']);
 
-%unzip file to get datasets
+%unzip file into dataset ml-10m
 unzip(fname);
 
+%delete file movie-ratings.zip
 delete(fname);
+
 dataset = 'ml-10M100K'
-%read movies.dat with readtable
+%read movies.dat  from dataset ml-10m100k with readtable to table moviesTbl
 moviesTbl = readtable([pwd '/', dataset, '/movies.dat'],'Delimiter','::','TextType','string')
+
+%change name of fields in the table moviesTbl to movieId, title and genres
 
 moviesTbl.Properties.VariableNames{'Var1'} = 'movieId';
 moviesTbl.Properties.VariableNames{'Var2'} = 'title';
 moviesTbl.Properties.VariableNames{'Var3'} = 'genres';
+% with summary you get 10681 movies with the moviid, title and genres
 summary(moviesTbl);
+
+%get a datastore from ml-10M100K dataset file ratings.dat
+ratingsDS = tabularTextDatastore([pwd '/', dataset, '/ratings.dat'],...
+     'SelectedVariableNames',{'Var1','Var3','Var5'})
+     
+%    pass the datastore to a tall table ratingsTbl
+ratingsTbl = tall(ratingsDS);
+
+%    'change variable names to:',{'userId','movieId','rating'})
+ratingsTbl.Properties.VariableNames{'Var1'} = 'userId';
+ratingsTbl.Properties.VariableNames{'Var3'} = 'movieId';
+ratingsTbl.Properties.VariableNames{'Var5'} = 'rating';
 
