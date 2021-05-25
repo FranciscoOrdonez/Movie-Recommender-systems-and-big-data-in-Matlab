@@ -1,0 +1,30 @@
+%extract year of creation on a year array
+n = length(moviesTbl.title);
+year = zeros(n,1);
+for i = 1:n
+    str = extractBetween(moviesTbl.title(i),'(',')');
+    if isempty(str)
+        % Missing year
+        year(i) = nan;
+    else
+        % In case of multiple parentheses, use last string extracted
+        year(i) = str2double(str(end)); 
+    end
+end
+inds = moviesTbl.movieId(isnan(year));
+moviesTbl.year = year
+
+
+%extract in different fields all genres as 1 if yes or 0 if no
+% Obtain a list of all unique genres in the dictionary
+Genres = join(moviesTbl.genres,'|');
+Genres = unique(split(Genres,'|'));
+Genres(1) = []; % Remove 'no genres' genre
+% Create a logical variable for each genre
+genres = arrayfun(@(Genres)contains(moviesTbl.genres,Genres),Genres','UniformOutput',false);
+% Add the genre variables to the dictionary
+moviesTbl = addvars(moviesTbl,genres{:},'NewVariableNames',lower(replace(Genres,'-','')));
+% Remove the original genre variable
+moviesTbl = removevars(moviesTbl,'genres')
+
+
