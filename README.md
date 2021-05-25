@@ -30,7 +30,7 @@ The "movie.dat" table is a small dataset and there is no need to make it a tall 
 
 ![image](https://user-images.githubusercontent.com/53232113/119567726-48c93780-bd72-11eb-9019-a1b00b50f99a.png)
 
-
+The histogram shows the number of movies per year of creatin in the dataset. We find that the most number of movies are created between 2003 and 2005.
 
 MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
 
