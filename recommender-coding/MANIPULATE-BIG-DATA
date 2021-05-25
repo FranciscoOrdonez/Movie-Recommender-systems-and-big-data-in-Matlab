@@ -1,0 +1,31 @@
+%CREATE DATASTORE
+ratingsDS = tabularTextDatastore([pwd '/', dataset, '/ratings.dat'],...
+     'SelectedVariableNames',{'Var1','Var3','Var5'})
+%    'SelectedVariableNames',{'userId','movieId','rating'})
+%CREATE TALL TABLE ratingsTbl
+ratingsTbl = tall(ratingsDS);
+
+ratingsTbl.Properties.VariableNames{'Var1'} = 'userId';
+ratingsTbl.Properties.VariableNames{'Var3'} = 'movieId';
+ratingsTbl.Properties.VariableNames{'Var5'} = 'rating';
+nr = height(ratingsTbl);
+nr = gather(nr);
+fprintf('There are %d total ratings in the dataset',nr)
+
+ratingsTbl(ismember(ratingsTbl.movieId,inds),:) = [];
+
+counts = histcounts(ratingsTbl.userId,'BinMethod','Integers');
+counts = gather(counts);
+
+nu = length(counts);
+[counts,usid] = max(counts);
+fprintf('There are %d unique user ID''s in the dataset',nu)
+
+fprintf('The most prolific reviewer in the dataset has user ID %d and has %d reviews.',usid,counts)
+
+globalMean = gather(mean(ratingsTbl.rating));
+
+fprintf('The mean movie rating is: %.4f', globalMean)
+
+histogram(categorical(ratingsTbl.rating))
+
