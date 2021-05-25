@@ -24,7 +24,11 @@ EXTRACT
 The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
 The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl". You can find the MATLAB code for EXTRACT in [EXTRACT DATA FROM GROUPLENS INTO TABLES](recommender-coding/extract).
 
-MANIPULATE NORMAL TABLE "moviesTbl"
+MANIPULATE A TABLE
+
+The "movie.dat" table is a small dataset and there is no need to make it a tall table. First, we find out there are 10681 movies. Then, we extract from title the year of the movie and put in a year array. The distribution of the movies dataset by year is as follows:
+
+
 
 
 MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
