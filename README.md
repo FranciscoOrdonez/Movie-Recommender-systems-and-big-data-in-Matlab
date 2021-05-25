@@ -28,6 +28,7 @@ MANIPULATE A TABLE
 
 The "movie.dat" table is a small dataset and there is no need to make it a tall table. First, we find out there are 10681 movies. Then, we extract from title the year of the movie and put in a year array. The distribution of the movies dataset by year is as follows:
 
+![image](https://user-images.githubusercontent.com/53232113/119567726-48c93780-bd72-11eb-9019-a1b00b50f99a.png)
 
 
 
