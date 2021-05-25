@@ -1,5 +1,7 @@
 # Movie-Recommender-systems-and-big-data-in-Matlab
-Analyze movie dataset with datastore and tall tables, collaborative filtering recommender algorithm with sparse and no sparse matrix and compare results
+
+In this project we analyze movie dataset with datastore and tall tables, we use collaborative filtering recommender algorithms with sparse and no sparse matrix and finally we compare and conclude results with both approaches.
+
 Recommender Systems help find the product that could probably buy a customer, or suggest product to customers, or on youTube, uses it to decide which video to play next on autoplay, or Facebook uses it to recommend pages to like and people to follow. It is based on data of users and products. Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
 
 INTRODUCTION 
