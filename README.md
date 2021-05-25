@@ -3,6 +3,7 @@ Analyze movie dataset with datastore and tall tables, collaborative filtering re
 Recommender Systems help find the product that could probably buy a customer, or suggest product to customers, or on youTube, uses it to decide which video to play next on autoplay, or Facebook uses it to recommend pages to like and people to follow. It is based on data of users and products. Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
 
 INTRODUCTION 
+
 This project is based on Coursega Stanford Machine Learning Andrew Ng course. Most of the code has been taken from Week 9 examples, with some changes.
 
 There are three types of recommender systems:
@@ -13,7 +14,9 @@ There is more information available on Recommender systems in [wikipedia](https:
 
 Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with normal matrices and algorithm "fmincg", and another with sparse matrices and algorithm "codigraf", and observe their differences.
 
-EXTRACT The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. More details about the contents and use of all these files follows. dataset which contains 10681 movies with 7158 users and 10 millon ratings. The extraction will unzip the data and get into two tables, movie table which is relatively small table using "readfile" command, and the ratings table which is a large table using datastores and tall tables (see ...........).
+EXTRACT
+
+The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. More details about the contents and use of all these files follows. dataset which contains 10681 movies with 7158 users and 10 millon ratings. The extraction will unzip the data and get into two tables, movie table which is relatively small table using "readfile" command, and the ratings table which is a large table using datastores and tall tables (see ...........).
 
 MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
 
