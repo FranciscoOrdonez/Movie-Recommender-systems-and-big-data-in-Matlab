@@ -1,0 +1,20 @@
+
+clear;
+dataset = 'ml-10m';
+fname = 'movie-ratings.zip';
+% move dataset ml-10m and save into disk
+websave(fname,['http://files.grouplens.org/datasets/movielens/',dataset,'.zip']);
+
+%unzip file to get datasets
+unzip(fname);
+
+delete(fname);
+dataset = 'ml-10M100K'
+%read movies.dat with readtable
+moviesTbl = readtable([pwd '/', dataset, '/movies.dat'],'Delimiter','::','TextType','string')
+
+moviesTbl.Properties.VariableNames{'Var1'} = 'movieId';
+moviesTbl.Properties.VariableNames{'Var2'} = 'title';
+moviesTbl.Properties.VariableNames{'Var3'} = 'genres';
+summary(moviesTbl);
+
