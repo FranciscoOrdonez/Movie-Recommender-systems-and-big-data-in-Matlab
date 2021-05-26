@@ -57,6 +57,9 @@ Unlike computations with in-memory data types, computations involving tall datat
 With command "nr = height(ratingTbl)" and the command "gather(nr)" we see there are 10'000.054 ratings. 
 With the command: "counts = histcounts(ratingsTbl.userId,'BinMethod','Integers') and "counts = gather(counts)" we see there are  7.158 userIDs.
 With command "globalMean = gather(mean(ratingsTbl.rating));" the global mean of dataset is 3.51.
+The histogram for user ratings is:
+
+![image](https://user-images.githubusercontent.com/53232113/119584889-31e50e00-bd8f-11eb-95ae-c2c48471accc.png)
 
 
 COMBINE TABLES AND ANALYZE BIG DATA
