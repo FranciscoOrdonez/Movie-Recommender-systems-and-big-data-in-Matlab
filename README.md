@@ -19,7 +19,7 @@ In [wikipedia](https://en.wikipedia.org/wiki/Recommender_system) you can find ma
 
 Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with ordinary matrices and algorithm "fmincg", and another with sparse matrices and algorithm "codigraf", and observe their differences.
 
-EXTRACT
+** 2.EXTRACT**
 
 The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
 The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl".
@@ -34,7 +34,7 @@ Because of the prohibitive size of the ratings data, we will not import it direc
 
 You can find the MATLAB code for EXTRACT in [here](recommender-coding/extract).
 
-MANIPULATE A TABLE
+**3.MANIPULATE A TABLE**
 
 The "movie.dat" table is a small dataset and there is no need to make it a tall table. First, we find out there are 10681 movies. Then, we extract from title the year of the movie and put in a year array. The distribution of the movies dataset by year is as follows:
 
@@ -50,7 +50,7 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-codi
    
    
 
-MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
+**4.MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE**
 
 
 
@@ -69,7 +69,7 @@ The time to plot this histogram is 24 seconds.
 You can find the MATLAB code for "MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE" in [here](recommender-coding/MANIPULATE-BIG-DATA).
    
 
-COMBINE TABLES AND ANALYZE BIG DATA
+**5.COMBINE TABLES AND ANALYZE BIG DATA**
 
 Combine the rating and movie tables
 
@@ -121,10 +121,10 @@ This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to
 
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE DATA" in [here](recommender-coding/combine-analize-tables).
 
-COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
+**6.COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX**
 
-COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX
+**7.COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX**
 
-OBSERVATIONS
+**8. OBSERVATIONS**
 
-CONCLUSIONS
+**9.CONCLUSIONS**
