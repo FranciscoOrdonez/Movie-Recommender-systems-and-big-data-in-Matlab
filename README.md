@@ -22,7 +22,17 @@ Here, with MATLAB, we will extract and analyze big movie data with datastore and
 EXTRACT
 
 The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
-The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl". You can find the MATLAB code for EXTRACT in [EXTRACT DATA FROM GROUPLENS INTO TABLES](recommender-coding/extract).
+The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl".
+
+Working with the ratings data
+
+While the movie data was small enough to use an ordinary table variable, the ratings data is typically much larger*. In this section we outline methods for importing and working with 'out-of-memory' data.
+
+Create a datastore to interface with ratings file
+
+Because of the prohibitive size of the ratings data, we will not import it directly into an ordinary in-memory variable like table or array. Instead, we will interface with the file via a datastore. A datastore provides a way to access data in a file or collection of files with the same structure without loading it all into memory. A datastore eliminates the need to write custom file I/O routines to import or export data. The type of datastore used depends on the type of data in the files and how it is organized- see the documentation for more information. For the current example, we will create a tabularTextDatastore to interface with ratings.csv.
+
+You can find the MATLAB code for EXTRACT in [here](recommender-coding/extract).
 
 MANIPULATE A TABLE
 
@@ -36,19 +46,13 @@ Then, we create a new field "year" as to have the creation year separately from 
 Extract the movie genres
 The movie genres are contained in moviesTbl as the string variable, genre, which lists all genres that apply to each movie separated by a '|'. Since many movies belong to multiple genres, it is not possible to map this information to a single numeric or categorical value without creating a unique category for all observed combinations. Instead we will map each genre to a logical variable, then the genre variables to moviesTbl. A 1 in a given row of a genre variable will indicate that the movie in that row belongs to that genre. 
 
-You can find the MATLAB code for "MANIPULATE A TABLE" in [MANIPULATE MOVIE TABLE](recommender-coding/manipulate-table).
+You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-coding/manipulate-table).
    
    
 
 MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
 
-Working with the ratings data
 
-While the movie data was small enough to use an ordinary table variable, the ratings data is typically much larger*. In this section we outline methods for importing and working with 'out-of-memory' data.
-
-Create a datastore to interface with ratings file
-
-Because of the prohibitive size of the ratings data, we will not import it directly into an ordinary in-memory variable like table or array. Instead, we will interface with the file via a datastore. A datastore provides a way to access data in a file or collection of files with the same structure without loading it all into memory. A datastore eliminates the need to write custom file I/O routines to import or export data. The type of datastore used depends on the type of data in the files and how it is organized- see the documentation for more information. For the current example, we will create a tabularTextDatastore to interface with ratings.csv.
 
 Working with tall variables
 Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
@@ -62,7 +66,7 @@ The histogram for user ratings is:
 ![image](https://user-images.githubusercontent.com/53232113/119584889-31e50e00-bd8f-11eb-95ae-c2c48471accc.png)
 We can see that about 2.5 millon ratings are 3.0, about 2.9 millon are 4.0, and look like the average rating is 3.5.
 The time to plot this histogram is 24 seconds.  
-You can find the MATLAB code for "MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE" in [MANIPULATE MOVIE TABLE](recommender-coding/MANIPULATE-BIG-DATA).
+You can find the MATLAB code for "MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE" in [here](recommender-coding/MANIPULATE-BIG-DATA).
    
 
 COMBINE TABLES AND ANALYZE BIG DATA
@@ -115,7 +119,7 @@ legend({'Mean rating','# of ratings'})
 
 This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
 
-You can find the MATLAB code for "COMBINE TABLES AND ANALYZE DATA" in [COMBINE TABLES AND ANALYZE DATA](recommender-coding/combine-analize-tables).
+You can find the MATLAB code for "COMBINE TABLES AND ANALYZE DATA" in [here](recommender-coding/combine-analize-tables).
 
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
 
