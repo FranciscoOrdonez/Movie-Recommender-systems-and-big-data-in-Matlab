@@ -65,6 +65,41 @@ The time to plot this histogram is 24 seconds.
 
 COMBINE TABLES AND ANALYZE BIG DATA
 
+Combine the rating and movie tables
+
+While keeping a separate dictionary table like moviesTbl would usually save memory - as the title and genre information is not repeated for every rating of that movie - this advantage is largely negated when working with out-of-memory data. Therefore we will combine the data in ratingsTbl and moviesTbl by joining them on their common variable, movieId, using the join function. (This is different than the join method for string variables used earlier.) By joining the two tables, computations involving information from both tables will be simplified.
+
+Left joins
+
+If you have previously worked with databases, you are probably already familiar with join operations as they are commonly used for combining and working with data stored in multiple databases. There are many different types of joins- the one discussed below is referred to as a left-join. As stated above we wish to form a single table that combines the information in ratings table and the movie dictionary table to simplify analysis that uses information from each. In the present case:
+Both ratingsTbl and moviesTbl share a common or 'key' variable, movieId.
+moviesTbl only contains a single row for each unique movieId value.
+ratingsTbl contains multiple rows for most movieId values as most of the movies have been reviewed multiple times.
+By left-joining the ratings table with the dictionary table, we will effectively of 'broadcast' a copy of each non-key row of moviesTbl to the corresponding rows of ratingsTbl that share the same movie ID. Any movies listed in moviesTbl whose ID is not contained in ratingsTbl (i.e. the movie was in the dictionary but not rated) will be ignored. The resulting table will contain the same number of rows as ratingsTbl with the additional title and genre information carried over from moviesTbl. See the documentation for more information on joining tables using join.
+Joining a tall table
+Because ratingsTbl is a tall table, the additional information from moviesTbl will be added to the ratings data automatically as chunks of data are read in from the csv file. This is different from an in-memory table where this information would be immediately added to the table variable (increasing its memory footprint). Also, no data (additional columns) will be added to the original data file, ratings.csv. 
+    Run the code below to join ratingsTbl and moviesTbl on movieId and examine the results.
+ratingsTbl = join(ratingsTbl,moviesTbl)
+
+Obtain a list of unique movie ID's and update the ID's in ratingsTbl 
+The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Run the code below to update the ratings table with the new movie IDs and obtain the number of unique movies in the dataset. 
+
+There are 10677 unique movies in the ratings dataset
+
+Identify the most reviewed movie
+Run the code below to obtain the number of ratings for each movie in movieId and store it in the variable numRatings, then find the most reviewed movie in the dataset. The distribution of ratings/movie is also visualized. 
+numRatings = gather(histcounts(ratingsTbl.movieId,'BinMethod','integers'));
+
+[count,ind] = max(numRatings);
+ttl = gather(ratingsTbl.title(find(ratingsTbl.movieId==ind,1)));
+
+fprintf('The most reviewed movie in the dataset is ''%s'' with %d reviews',ttl, count);
+The most reviewed movie in the dataset is 'Pulp Fiction (1994)' with 34864 reviews
+
+![image](https://user-images.githubusercontent.com/53232113/119593749-1fbf9b80-bda0-11eb-8529-f49a8a80f350.png)
+
+
+
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
 
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX
