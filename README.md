@@ -42,6 +42,23 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [MANIPULATE MOVIE TABLE
 
 MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE
 
+Working with the ratings data
+
+While the movie data was small enough to use an ordinary table variable, the ratings data is typically much larger*. In this section we outline methods for importing and working with 'out-of-memory' data.
+
+Create a datastore to interface with ratings file
+
+Because of the prohibitive size of the ratings data, we will not import it directly into an ordinary in-memory variable like table or array. Instead, we will interface with the file via a datastore. A datastore provides a way to access data in a file or collection of files with the same structure without loading it all into memory. A datastore eliminates the need to write custom file I/O routines to import or export data. The type of datastore used depends on the type of data in the files and how it is organized- see the documentation for more information. For the current example, we will create a tabularTextDatastore to interface with ratings.csv.
+
+Working with tall variables
+Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
+
+
+With command "nr = height(ratingTbl)" and the command "gather(nr)" we see there are 10'000.054 ratings. 
+With the command: "counts = histcounts(ratingsTbl.userId,'BinMethod','Integers') and "counts = gather(counts)" we see there are  7.158 userIDs.
+With command "globalMean = gather(mean(ratingsTbl.rating));" the global mean of dataset is 3.51.
+
+
 COMBINE TABLES AND ANALYZE BIG DATA
 
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
