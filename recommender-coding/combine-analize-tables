@@ -1,26 +1,30 @@
+%join two tables 
 ratingsTbl = join(ratingsTbl,moviesTbl)
 
-[grp,inds] = findgroups(ratingsTbl.movieId);
+%group by movieId[grp,inds] = findgroups(ratingsTbl.movieId);
 inds = gather(inds);
 
+% find the number of unique movies in inds
 nm = length(inds);
 fprintf('There are %d unique movies in the ratings dataset',nm)
 
+%save gro in variable movieID in table ratingsTbl
 ratingsTbl.movieId = grp
 
+%create an array numRatings with the number of ratings for each row, a movie. The size should be nm x 1
 numRatings = gather(histcounts(ratingsTbl.movieId,'BinMethod','integers'));
 
+%fin the movie that has the greater number of rating among all
 [count,ind] = max(numRatings);
 ttl = gather(ratingsTbl.title(find(ratingsTbl.movieId==ind,1)));
 
 fprintf('The most reviewed movie in the dataset is ''%s'' with %d reviews',ttl, count);
 
-histogram(numRatings,'BinWidth',10)
-xlabel('# of Reviews')
-
+%get the means by year and the number of ratings per year
 [means,sums,grp] = grpstats(ratingsTbl.rating,ratingsTbl.year,{'mean','numel','gname'});
 [means,sums,grp] = gather(means,sums,grp);
 
+%plot two graphs in on, one with means of ratings per year on the left and, number of ratings per year on the right
 figure; hold on;
 yyaxis left;
 plot(str2double(grp),means,'b.','MarkerSize',6);
@@ -28,28 +32,4 @@ yyaxis right;
 plot(str2double(grp),sums,'rsq','MarkerSize',6);
 legend({'Mean rating','# of ratings'})
 
-err = gather(mean(abs(ratingsTbl.rating-globalMean)));
 
-fprintf('The mean absolute prediction error using the overall mean rating is: %g',err);
-
-meanRating = gather(splitapply(@mean,ratingsTbl.rating,ratingsTbl.movieId));
-
-ratingsTbl = join(ratingsTbl,array2table([(1:nm)',meanRating,numRatings'],'VariableNames',{'movieId','meanRating','numRatings'}));
-meanPred = ratingsTbl.meanRating;
-meanPred(ratingsTbl.numRatings<10) = globalMean;
-meanPredErr = mean(abs(meanPred-ratingsTbl.rating));
-fprintf('The mean absolute error when predicting the mean rating by movie is: %g',gather(meanPredErr))
-
-tbl = unique(ratingsTbl(:,[2,4,5,end-1,end,6:end-2]),'rows');
-tbl = gather(tbl)
-
-
-
-
-
-
-
-
-
-clearvars -except R ratingsTbl ratingsDS tbl globalMean
-[userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.r
