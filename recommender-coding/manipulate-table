@@ -14,6 +14,8 @@ end
 inds = moviesTbl.movieId(isnan(year));
 moviesTbl.year = year
 
+%plot a histogram of matrix year
+histogram(year)
 
 %extract in different fields all genres as 1 if yes or 0 if no
 % Obtain a list of all unique genres in the dictionary
