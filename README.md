@@ -96,9 +96,22 @@ ttl = gather(ratingsTbl.title(find(ratingsTbl.movieId==ind,1)));
 fprintf('The most reviewed movie in the dataset is ''%s'' with %d reviews',ttl, count);
 The most reviewed movie in the dataset is 'Pulp Fiction (1994)' with 34864 reviews
 
+Calculate and plot the mean rating of movies by release year
+Grouping functions like grpstats and findgroups can be applied on tall data with the additional step that their outputs must be gathered. Run the code below to calculate the mean movie rating by release year and the total number of ratings for movies released that year. The results are then plotted by year on the same axis using the yyaxis function before being plotted vs each other. 
+[means,sums,grp] = grpstats(ratingsTbl.rating,ratingsTbl.year,{'mean','numel','gname'});
+[means,sums,grp] = gather(means,sums,grp);
+
+figure; hold on;
+yyaxis left;
+plot(str2double(grp),means,'b.','MarkerSize',6);
+yyaxis right;
+plot(str2double(grp),sums,'rsq','MarkerSize',6);
+legend({'Mean rating','# of ratings'})
+
+
 ![image](https://user-images.githubusercontent.com/53232113/119593749-1fbf9b80-bda0-11eb-8529-f49a8a80f350.png)
 
-
+This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 1000 between years 1900 to 1980, and from 1990 to 2000 it is about 6000, and from 2000 to 2020 decreases from 6000 to zero.  
 
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
 
