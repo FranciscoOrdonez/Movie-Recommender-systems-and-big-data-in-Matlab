@@ -44,6 +44,7 @@ The histogram shows the number of movies per year of creation in the dataset. We
 Then, we create a new field "year" as to have the creation year separately from the title.  
 
 Extract the movie genres
+
 The movie genres are contained in moviesTbl as the string variable, genre, which lists all genres that apply to each movie separated by a '|'. Since many movies belong to multiple genres, it is not possible to map this information to a single numeric or categorical value without creating a unique category for all observed combinations. Instead we will map each genre to a logical variable, then the genre variables to moviesTbl. A 1 in a given row of a genre variable will indicate that the movie in that row belongs to that genre. 
 
 You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-coding/manipulate-table).
