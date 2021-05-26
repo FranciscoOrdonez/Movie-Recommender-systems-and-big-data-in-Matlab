@@ -60,7 +60,8 @@ With command "globalMean = gather(mean(ratingsTbl.rating));" the global mean of 
 The histogram for user ratings is:
 
 ![image](https://user-images.githubusercontent.com/53232113/119584889-31e50e00-bd8f-11eb-95ae-c2c48471accc.png)
-
+We can see that about 2.5 millon ratings are 3.0, about 2.9 millon are 4.0, and look like the average rating is 3.5.
+The time to plot this histogram is 24 seconds.  
 
 COMBINE TABLES AND ANALYZE BIG DATA
 
