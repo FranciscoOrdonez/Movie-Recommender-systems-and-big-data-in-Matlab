@@ -36,12 +36,12 @@ You can find the MATLAB code for EXTRACT in [here](recommender-coding/extract).
 
 **3. MANIPULATE A TABLE**
 
-The "movie.dat" table is a small dataset and there is no need to make it a tall table. First, we find out there are 10681 movies. Then, we extract from title the year of the movie and put in a year array. The distribution of the movies dataset by year is as follows:
+The "movie.dat" table is a small dataset and there is no need to make it a tall table. First, we find out there are 10681 movies. Then, we extract from title the release year of the movie and put in a year array. The distribution of the movies dataset by released year is as follows:
 
 ![image](https://user-images.githubusercontent.com/53232113/119567726-48c93780-bd72-11eb-9019-a1b00b50f99a.png)
 
-The histogram shows the number of movies per year of creation in the dataset. We find that the most number of movies are created between 2003 and 2005 with aproximately 1200 movies, in 1980 there are about 200, and after 2010 there are no movies in the dataset.
-Then, we create a new field "year" as to have the creation year separately from the title.  
+The histogram shows the number of movies per release year in the dataset. We find that the most number of movies are created between 2003 and 2005 with aproximately 1200 movies, in 1980 there are about 200, and after 2010 there are no movies in the dataset.
+Then, we create a new variable "year" as to have the released  year separately from the title.  
 
 Extract the movie genres
 
@@ -91,11 +91,10 @@ To join ratingsTbl and moviesTbl on movieId you use the following code:
 ratingsTbl = join(ratingsTbl,moviesTbl)
 
 Obtain a list of unique movie ID's and update the ID's in ratingsTbl 
-The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Run the code below to update the ratings table with the new movie IDs and obtain the number of unique movies in the dataset. 
-
-There are 10677 unique movies in the ratings dataset
+The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Running the code  to update the ratings table with the new movie IDs we obtain 10677 unique movies in the dataset. On the movie dataset "movieTbb" we have 10681 movies, three more than the ratings dataset.
 
 Identify the most reviewed movie
+
 Run the code below to obtain the number of ratings for each movie in movieId and store it in the variable numRatings, then find the most reviewed movie in the dataset. The distribution of ratings/movie is also visualized. 
 numRatings = gather(histcounts(ratingsTbl.movieId,'BinMethod','integers'));
 
@@ -106,16 +105,8 @@ fprintf('The most reviewed movie in the dataset is ''%s'' with %d reviews',ttl, 
 The most reviewed movie in the dataset is 'Pulp Fiction (1994)' with 34864 reviews
 
 Calculate and plot the mean rating of movies by release year
-Grouping functions like grpstats and findgroups can be applied on tall data with the additional step that their outputs must be gathered. Run the code below to calculate the mean movie rating by release year and the total number of ratings for movies released that year. The results are then plotted by year on the same axis using the yyaxis function before being plotted vs each other. 
-[means,sums,grp] = grpstats(ratingsTbl.rating,ratingsTbl.year,{'mean','numel','gname'});
-[means,sums,grp] = gather(means,sums,grp);
 
-figure; hold on;
-yyaxis left;
-plot(str2double(grp),means,'b.','MarkerSize',6);
-yyaxis right;
-plot(str2double(grp),sums,'rsq','MarkerSize',6);
-legend({'Mean rating','# of ratings'})
+Grouping functions like grpstats and findgroups can be applied on tall data with the additional step that their outputs must be gathered. Running this code  calculates the mean movie rating by release year and the total number of ratings for movies released that year. The results are then plotted by year on the same axis using the yyaxis function before being plotted vs each other: 
 
 
 ![image](https://user-images.githubusercontent.com/53232113/119593749-1fbf9b80-bda0-11eb-8529-f49a8a80f350.png)
