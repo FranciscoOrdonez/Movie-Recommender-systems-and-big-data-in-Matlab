@@ -1,17 +1,7 @@
-%CREATE DATASTORE
-ratingsDS = tabularTextDatastore([pwd '/', dataset, '/ratings.dat'],...
-     'SelectedVariableNames',{'Var1','Var3','Var5'})
-%    'SelectedVariableNames',{'userId','movieId','rating'})
-
-preview(ratingsDS);
-
-%CREATE TALL TABLE ratingsTbl
-ratingsTbl = tall(ratingsDS);
-
-ratingsTbl.Properties.VariableNames{'Var1'} = 'userId';
-ratingsTbl.Properties.VariableNames{'Var3'} = 'movieId';
-ratingsTbl.Properties.VariableNames{'Var5'} = 'rating';
+%find numer to ratings
 nr = height(ratingsTbl);
+
+%use gather to get variable in memory
 nr = gather(nr);
 fprintf('There are %d total ratings in the dataset',nr)
 
