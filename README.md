@@ -54,6 +54,7 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-codi
 **4. MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE**
 
 Working with tall variables
+
 Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
 
 
@@ -81,7 +82,9 @@ Both ratingsTbl and moviesTbl share a common or 'key' variable, movieId.
 moviesTbl only contains a single row for each unique movieId value.
 ratingsTbl contains multiple rows for most movieId values as most of the movies have been reviewed multiple times.
 By left-joining the ratings table with the dictionary table, we will effectively of 'broadcast' a copy of each non-key row of moviesTbl to the corresponding rows of ratingsTbl that share the same movie ID. Any movies listed in moviesTbl whose ID is not contained in ratingsTbl (i.e. the movie was in the dictionary but not rated) will be ignored. The resulting table will contain the same number of rows as ratingsTbl with the additional title and genre information carried over from moviesTbl. See the documentation for more information on joining tables using join.
+
 Joining a tall table
+
 Because ratingsTbl is a tall table, the additional information from moviesTbl will be added to the ratings data automatically as chunks of data are read in from the csv file. This is different from an in-memory table where this information would be immediately added to the table variable (increasing its memory footprint). Also, no data (additional columns) will be added to the original data file, ratings.csv. 
 
 To join ratingsTbl and moviesTbl on movieId you use the following code:
