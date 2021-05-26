@@ -1,0 +1,55 @@
+ratingsTbl = join(ratingsTbl,moviesTbl)
+
+[grp,inds] = findgroups(ratingsTbl.movieId);
+inds = gather(inds);
+
+nm = length(inds);
+fprintf('There are %d unique movies in the ratings dataset',nm)
+
+ratingsTbl.movieId = grp
+
+numRatings = gather(histcounts(ratingsTbl.movieId,'BinMethod','integers'));
+
+[count,ind] = max(numRatings);
+ttl = gather(ratingsTbl.title(find(ratingsTbl.movieId==ind,1)));
+
+fprintf('The most reviewed movie in the dataset is ''%s'' with %d reviews',ttl, count);
+
+histogram(numRatings,'BinWidth',10)
+xlabel('# of Reviews')
+
+[means,sums,grp] = grpstats(ratingsTbl.rating,ratingsTbl.year,{'mean','numel','gname'});
+[means,sums,grp] = gather(means,sums,grp);
+
+figure; hold on;
+yyaxis left;
+plot(str2double(grp),means,'b.','MarkerSize',6);
+yyaxis right;
+plot(str2double(grp),sums,'rsq','MarkerSize',6);
+legend({'Mean rating','# of ratings'})
+
+err = gather(mean(abs(ratingsTbl.rating-globalMean)));
+
+fprintf('The mean absolute prediction error using the overall mean rating is: %g',err);
+
+meanRating = gather(splitapply(@mean,ratingsTbl.rating,ratingsTbl.movieId));
+
+ratingsTbl = join(ratingsTbl,array2table([(1:nm)',meanRating,numRatings'],'VariableNames',{'movieId','meanRating','numRatings'}));
+meanPred = ratingsTbl.meanRating;
+meanPred(ratingsTbl.numRatings<10) = globalMean;
+meanPredErr = mean(abs(meanPred-ratingsTbl.rating));
+fprintf('The mean absolute error when predicting the mean rating by movie is: %g',gather(meanPredErr))
+
+tbl = unique(ratingsTbl(:,[2,4,5,end-1,end,6:end-2]),'rows');
+tbl = gather(tbl)
+
+
+
+
+
+
+
+
+
+clearvars -except R ratingsTbl ratingsDS tbl globalMean
+[userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.r
