@@ -62,6 +62,8 @@ The histogram for user ratings is:
 ![image](https://user-images.githubusercontent.com/53232113/119584889-31e50e00-bd8f-11eb-95ae-c2c48471accc.png)
 We can see that about 2.5 millon ratings are 3.0, about 2.9 millon are 4.0, and look like the average rating is 3.5.
 The time to plot this histogram is 24 seconds.  
+You can find the MATLAB code for "MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE" in [MANIPULATE MOVIE TABLE](recommender-coding/MANIPULATE-BIG-DATA).
+   
 
 COMBINE TABLES AND ANALYZE BIG DATA
 
@@ -111,7 +113,9 @@ legend({'Mean rating','# of ratings'})
 
 ![image](https://user-images.githubusercontent.com/53232113/119593749-1fbf9b80-bda0-11eb-8529-f49a8a80f350.png)
 
-This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 1000 between years 1900 to 1980, and from 1990 to 2000 it is about 6000, and from 2000 to 2020 decreases from 6000 to zero.  
+This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
+
+You can find the MATLAB code for "COMBINE TABLES AND ANALYZE DATA" in [COMBINE TABLES AND ANALYZE DATA](recommender-coding/combine-analize-tables).
 
 COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX
 
