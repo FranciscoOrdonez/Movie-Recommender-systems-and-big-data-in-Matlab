@@ -111,7 +111,7 @@ Grouping functions like grpstats and findgroups can be applied on tall data with
 
 ![image](https://user-images.githubusercontent.com/53232113/119593749-1fbf9b80-bda0-11eb-8529-f49a8a80f350.png)
 
-This plot shows that the average rating is between 2.5 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
+This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
 
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE DATA" in [here](recommender-coding/combine-analize-tables).
 
