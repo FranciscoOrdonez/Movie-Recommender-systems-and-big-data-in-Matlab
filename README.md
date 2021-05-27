@@ -4,7 +4,7 @@ In this project we analyze movie dataset with datastore and tall tables, we use 
 
 
 
-**1. INTRODUCTION** 
+##**1. INTRODUCTION** 
 
 This project is based on Coursega Stanford Machine Learning Andrew Ng course. Most of the code has been taken from Week 9 examples, with some changes.
 
