@@ -56,17 +56,20 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-codi
 Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
 
 With commands
-```nr = height(ratingTbl)
+```
+nr = height(ratingTbl)
 gather(nr)
 ```
 we see there are 10'000.054 ratings. 
 With commands
-```counts = histcounts(ratingsTbl.userId,'BinMethod','Integers')
+```
+counts = histcounts(ratingsTbl.userId,'BinMethod','Integers')
 counts = gather(counts)
 ```
 we see there are  7.158 userIDs.
 With command
-```globalMean = gather(mean(ratingsTbl.rating));
+```
+globalMean = gather(mean(ratingsTbl.rating));
 ```
 the global mean of dataset is 3.51.
 The histogram for user ratings is:
