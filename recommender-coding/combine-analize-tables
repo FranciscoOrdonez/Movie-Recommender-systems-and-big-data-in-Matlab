@@ -1,6 +1,13 @@
 %join two tables 
 ratingsTbl = join(ratingsTbl,moviesTbl)
 
+%get no. of ratings per user in counts matrix (nu x 1)
+counts = histcounts(ratingsTbl.userId,'BinMethod','Integers');
+counts = gather(counts);
+nu = length(counts);
+[counts,usid] = max(counts);
+fprintf('There are %d unique user ID''s in the dataset',nu)
+
 %group by movieId[grp,inds] = findgroups(ratingsTbl.movieId);
 inds = gather(inds);
 
