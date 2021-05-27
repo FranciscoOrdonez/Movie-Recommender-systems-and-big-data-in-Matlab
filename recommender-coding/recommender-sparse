@@ -1,0 +1,78 @@
+%get table tbl which contains one row per movie
+tbl = unique(ratingsTbl(:,[2,4,5,end-1,end,6:end-2]),'rows');
+tbl = gather(tbl)
+
+% clear some variables
+clearvars -except R ratingsTbl ratingsDS tbl globalMean
+
+%get userId, movieId and rating matrices from table ratingsTbl
+[userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.rating);
+
+clearvars -except R ratingsTbl ratingsDS tbl globalMean
+[userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.rating);
+
+R = sparse(userId,movieId,rating);
+
+
+[nu,nm] = size(R)
+
+my_ratings = my_ratings_action(nm);
+
+
+tab1 = tbl(:,[1,2]);
+array1 = table2array(tab1);
+
+fprintf('\n\nNew user ratings:\n');
+for i = 1:length(my_ratings)
+    if my_ratings(i) > 0 
+        fprintf('Rated %d for %s\n', my_ratings(i), array1(i,2));
+    end
+end
+
+%  R is a nu x nm matrix, containing ratings (1-5) of nu users by nm movies
+y = find(my_ratings>0);
+ny = size(y);
+
+%for i = 1:ny
+%    x = y(i);
+%    R(nu+1,x) = my_ratings(y(i));
+%end
+
+for i = 1:nm
+    if my_ratings(i) > 0
+        R(nu+1,i) = my_ratings(i);
+   end
+end
+%R(nu+1,movieid) = rating;
+
+% Your ratings:
+table(tbl.title(R(end,:)>0),nonzeros(R(end,:)),'VariableNames',{'Movie','Rating'});
+
+tol = 0.2; % Target mean absolute prediction error on existing ratings
+lambda = 1; % Regularization strength
+nf = 100; % Number of latent features
+[X,Theta,movieBias,userBias] = cofiGrad(R,nf,tol,lambda);
+
+p = X * Theta;
+
+[nu,nm] = size(R);
+
+my_predictions = p(nu,:);
+
+[r, ix] = sort(my_predictions,'descend');
+for i=1:20
+    j = ix(i);
+    if i == 1
+        fprintf('\nTop recommendations for you:\n');
+    end
+    fprintf('Predicting rating %.1f for movie %s\n', my_predictions(j), array1(j,2));
+end
+for i = 1:length(my_ratings)
+    if i == 1
+        fprintf('\n\nOriginal ratings provided:\n');
+    end
+    if my_ratings(i) > 0 
+        fprintf('Rated %d for %s\n', my_ratings(i), array1(i,2));
+    end
+end
+
