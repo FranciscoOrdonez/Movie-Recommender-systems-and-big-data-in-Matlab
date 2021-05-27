@@ -55,13 +55,13 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-codi
 
 **4. MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE**
 
-Working with tall variables
-
+## Working with tall variables
 Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
 
-
 With command "nr = height(ratingTbl)" and the command "gather(nr)" we see there are 10'000.054 ratings. 
-With the command: "counts = histcounts(ratingsTbl.userId,'BinMethod','Integers') and "counts = gather(counts)" we see there are  7.158 userIDs.
+With the commands:
+'''counts = histcounts(ratingsTbl.userId,'BinMethod','Integers')
+counts = gather(counts)''' we see there are  7.158 userIDs.
 With command "globalMean = gather(mean(ratingsTbl.rating));" the global mean of dataset is 3.51.
 The histogram for user ratings is:
 
