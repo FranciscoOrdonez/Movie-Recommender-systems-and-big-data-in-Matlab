@@ -55,7 +55,7 @@ You can find the MATLAB code for "MANIPULATE A TABLE" in [here](recommender-codi
 
 **4. MANIPULATE BIG DATA WITH DATASTORE AND TALL TABLE**
 
-### Working with tall variables
+##### Working with tall variables
 Unlike computations with in-memory data types, computations involving tall datatypes are not evaluated immediately.  When using gather(...) then the results are real.
 
 With command "nr = height(ratingTbl)" and the command "gather(nr)" we see there are 10'000.054 ratings. 
