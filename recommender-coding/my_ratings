@@ -1,0 +1,22 @@
+function [my_ratings] = my_ratings_action_2(nm)
+% Initialize my ratings
+my_ratings = zeros(1,nm);
+
+% Check the file movie_idx.txt for id of each movie in our dataset
+
+my_ratings(1) = 1;
+my_ratings(10) = 4;
+my_ratings(110) = 3;
+my_ratings(634) = 1;  
+my_ratings(700) = 1;
+my_ratings(725) = 5;
+my_ratings(164) = 5;
+my_ratings(1053) = 1;
+my_ratings(1183) = 4;
+my_ratings(1384) = 2;
+my_ratings(1556) = 5;
+my_ratings(418) = 1;
+my_ratings(1004) = 1;
+my_ratings(1398) = 1;
+my_ratings(1490) = 1;
+end
