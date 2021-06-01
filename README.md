@@ -129,13 +129,14 @@ For that, the process is as follows:
 1. get userid, movieId and ratings from table ratingsTbl.
 2. create de sparse matrix Y.
 3. create R matrix which contains one only in values that has ratings
-4. Normalize matrix Y into Ynorm for better predictions
-5. get my_ratings from function my_ratings_action and put the in the first column of Ynorm
-6. get X and Theta out of cofiGrad algorith
-7. get prediction matrix p by X * Theta
-8. get my predictions out of the last row or p matrix
-9. sort my predictions in descending order so as to see first the movies with the best predicting rating
-10. print predicted movies and original ratings
+4. get my_ratings from function my_ratings_action 
+5. normalize into Ynorm
+6. create R matrix
+7. get X and Theta out of fmincg algorith
+8. get prediction matrix p by X * Theta
+9. get my predictions out of the first column or p matrix
+10. sort my predictions in descending order so as to see first the movies with the best predicting rating
+11. print predicted movies and original ratings
 
 You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX" in [here](recommender-coding/recommender-normal). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
 The result and predictions:
