@@ -123,6 +123,26 @@ This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here](recommender-coding/combine-analize-tables).
 
 **6. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX**
+The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, and one is there is a value between 0.5 up to 5. With the input and some variables , we get the prediction matrix p, sort it and print my best predicted movies.
+
+For that, the process is as follows:
+1. get userid, movieId and ratings from table ratingsTbl.
+2. create de sparse matrix Y.
+3. create R matrix which contains one only in values that has ratings
+4. Normalize matrix Y into Ynorm for better predictions
+5. get my_ratings from function my_ratings_action and put the in the first column of Ynorm
+6. get X and Theta out of cofiGrad algorith
+7. get prediction matrix p by X * Theta
+8. get my predictions out of the last row or p matrix
+9. sort my predictions in descending order so as to see first the movies with the best predicting rating
+10. print predicted movies and original ratings
+
+You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX" in [here](recommender-coding/recommender-normal). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
+The result and predictions:
+##### My predictions:
+![image](https://user-images.githubusercontent.com/53232113/120266438-842e9f00-c267-11eb-80f8-099ca1fefd35.png)
+##### Results
+The recommender movies for my ratings are correct. In this list we find that most of the movies have my taste which are mainly action movies. The time for data up to 100000 is less than one minute and is quite slow (a few hours) if using 10 millon dataset.
 
 **7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX**
 
