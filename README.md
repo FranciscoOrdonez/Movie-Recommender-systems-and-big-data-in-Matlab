@@ -25,9 +25,9 @@ Here, with MATLAB, we will extract and analyze big movie data with datastore and
 **2. EXTRACT**
 
 The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip" for data analysis and 'ml-lastest-small' for recommender systems. With the 'ml-10m.zip', the  dataset contains 10,000,054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens.  Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
-##### DATASET
+
 For the 'ml-latest-small' dataset, it contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018. Users were selected at random for inclusion. All users selected had rated at least 20 movies. The data are contained in the files links.csv, movies.csv, ratings.csv and tags.csv.
-##### EXTRACTION
+
 The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl".
 ##### Working with the ratings data
 While the movie data was small enough to use an ordinary table variable, the ratings data is typically much larger. In this section we outline methods for importing and working with 'out-of-memory' data.
