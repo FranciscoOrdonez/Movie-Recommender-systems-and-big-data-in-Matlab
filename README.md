@@ -149,10 +149,21 @@ Below there are two pictures one with the my original movie ratings and the pred
 ##### Predicted movies
 ![image](https://user-images.githubusercontent.com/53232113/120251686-f1323c80-c247-11eb-9116-31a1df463c7d.png)
 
-
-
-
-
 **8. OBSERVATIONS**
+The data for the algorithms used has been the 'ml-latest-small'(aprox 100.000 ratings) from grouplens.  When using the 'ml-10m' dataset (aprox 10 millon ratings) there is an error in cofiGrad algorithm.  To fix this bug, we grouped the userID in table ratingsTbl with commands:  
+```
+[grp,inds] = findgroups(ratingsTbl.userId);
+inds = gather(inds);
+
+nu = length(inds);
+fprintf('There are %d unique users in the ratings dataset',nu)
+
+ratingsTbl.userId = grp
+```
+The bug is because there is a need to group the useid in orden to have all rows with some nonzero data.
+Also, we found out that with the 'ml-10m' dataset from grouplens neither codiGrad nor .... algorithms work as there is too much data for them and after hours of waiting they collapsed.
 
 **9. CONCLUSIONS**
+1. for large data sets these algorithms do not work, they are junt too slow. Probably there are other algorithms or there is a need for a supercomputer to make them work.
+2. for data sets with around 100.000 ratings these algorithms work perfect. It took between 30 second to 5 minutes to finish.
+3. Working with big data, the 
