@@ -20,16 +20,17 @@ C. Collaborative Filtering- This system matches persons with similar interests a
 
 In [wikipedia](https://en.wikipedia.org/wiki/Recommender_system) you can find mainly content based filtering and collaborative filtering, plus some others recommender systems.
 
-Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with ordinary matrices and algorithm "fmincg", and another with sparse matrices and algorithm "codigraf", and observe their differences.
+Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with sparse matrices and  algorithm "cofiGrad", and another with  algorithm "fmincg", and observe their differences.
 
 **2. EXTRACT**
 
-The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip". This data set contains 10,000,054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. Users were selected at random for inclusion. All users selected had rated at least 20 movies. Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
+The extract dataset comes from grouplens page at  "http://files.grouplens.org/datasets/movielens/" and use "ml-10m.zip" for data analysis and 'ml-lastest-small' for recommender systems. With the 'ml-10m.zip', the  dataset contains 10,000,054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens.  Unlike previous MovieLens data sets, no demographic information is included. Each user is represented by an id, and no other information is provided. The data are contained in three files, movies.dat, ratings.dat and tags.dat. Also included are scripts for generating subsets of the data to support five-fold cross-validation of rating predictions. 
+##### DATASET
+For the 'ml-latest-small' dataset, it contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018. Users were selected at random for inclusion. All users selected had rated at least 20 movies. The data are contained in the files links.csv, movies.csv, ratings.csv and tags.csv.
+##### EXTRACTION
 The extraction downloads data into a zip file, unzip the file to have on disk the files "movies.dat" and "ratings.dat". The "movies.dat" file is passed to a database table "moviesTbl" and the "rating.dat" file is passed to a database tall table "ratingsTbl".
-
 ##### Working with the ratings data
 While the movie data was small enough to use an ordinary table variable, the ratings data is typically much larger. In this section we outline methods for importing and working with 'out-of-memory' data.
-
 ##### Create a datastore to interface with ratings file
 Because of the prohibitive size of the ratings data, we will not import it directly into an ordinary in-memory variable like table or array. Instead, we will interface with the file via a datastore. A datastore provides a way to access data in a file or collection of files with the same structure without loading it all into memory. A datastore eliminates the need to write custom file I/O routines to import or export data. The type of datastore used depends on the type of data in the files and how it is organized- see the documentation for more information. For the current example, we will create a tabularTextDatastore to interface with ratings.csv.
 
