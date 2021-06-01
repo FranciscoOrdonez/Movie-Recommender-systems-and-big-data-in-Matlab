@@ -143,7 +143,7 @@ You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYST
 Results:
 
 Below there are two pictures one with the my original movie ratings and the predicted movies.  As my original ratings are rated with 5 and 4 for action and drama movies, and 0.5 and 1 for children movies, the predicted movies are mainly movies related to my tastes: action and drama movies.  I watched some of the predicted trailer movies and most of them match with my tastes eventhough I got a couple that are child movies or comedy movies that I do not like.
-##### my original rated movies
+##### My original rated movies
 ![image](https://user-images.githubusercontent.com/53232113/120251997-d6ac9300-c248-11eb-9447-dfae5df96aa8.png)
 
 ##### Predicted movies
@@ -161,7 +161,7 @@ fprintf('There are %d unique users in the ratings dataset',nu)
 ratingsTbl.userId = grp
 ```
 The bug is because there is a need to group the useid in orden to have all rows with some nonzero data.
-Also, we found out that with the 'ml-10m' dataset from grouplens neither codiGrad nor .... algorithms work as there is too much data for them and after hours of waiting they collapsed.
+Also, we found out that with the 'ml-10m' dataset from grouplens neither 'codiGrad' nor 'fmincg' algorithms work as there is too much data for them and after hours of waiting they collapsed.
 
 **9. CONCLUSIONS**
 1. for large data sets these algorithms do not work, they are junt too slow. Probably there are other algorithms or there is a need for a supercomputer to make them work.
