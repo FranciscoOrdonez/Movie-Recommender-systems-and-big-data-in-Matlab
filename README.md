@@ -188,6 +188,7 @@ The bug is because there is a need to group the useid in orden to have all rows 
 Also, we found out that with the 'ml-10m' dataset from grouplens neither 'codiGrad' nor 'fmincg' algorithms work as there is too much data for them and after hours of waiting they collapsed.
 
 **9. CONCLUSIONS**
-1. for large data sets these algorithms do not work, they are junt too slow. Probably there are other algorithms or there is a need for a supercomputer to make them work.
+1. for large data sets these algorithms do not work, they are just too slow. Probably there are other algorithms or there is a need for a supercomputer to make them work.
 2. for data sets with around 100.000 ratings these algorithms work perfect. It took between 30 second to 5 minutes to finish.
-3. Working with big data, the 
+3. Using datastore and tall tables is the best way to work with big datasets. In this analysis we worked with two datasets, one with 100K ratings and another with 10000 k ratings.  In the small dataset there is no need for datastore and tall tables, and in big dataset(10000 k ratings) most of the processes worked in seconds or in a few minutes.
+4. Using sparse matrices is the best way to work with big datasets. Sparse matrices use less memory and are faster than ordinary matrices. 
