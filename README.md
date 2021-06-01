@@ -1,6 +1,6 @@
 # Movie-Recommender-systems-and-big-data-in-Matlab
 
-In this project we analyze movie dataset with datastore and tall tables, we use collaborative filtering recommender algorithms with sparse and no sparse matrix and finally we compare and conclude results with both approaches.  Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
+In this project we analyze movie dataset with datastore and tall tables, we use collaborative filtering recommender algorithms with sparse  matrices with algorithms 'fmincg', and "cofiGrad", and observe their differences, and finally we compare and conclude results with both approaches.  Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
 
 
 
@@ -126,7 +126,7 @@ This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here](recommender-coding/combine-analize-tables).
 
 **6. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'fmincg' ALGORITHM**
-The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, and one is there is a value between 0.5 up to 5. With the input and some variables , we get the prediction matrix p, sort it and print my best predicted movies.
+The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, or one if there is a value. With the inputs matrix Y and matrix R,  and some variables , process fmincg algorithm and  we get the prediction matrix p, sort it and print my best predicted movies.
 
 For that, the process is as follows:
 1. get userid, movieId and ratings from table ratingsTbl.
@@ -135,8 +135,8 @@ For that, the process is as follows:
 4. get my_ratings from function my_ratings_action 
 5. normalize into Ynorm
 6. create R matrix
-7. get X and Theta out of fmincg algorith
-8. get prediction matrix p by X * Theta
+7. get X and Theta out of fmincg algorithm
+8. get prediction matrix p by multiplying X * Theta
 9. get my predictions out of the first column or p matrix
 10. sort my predictions in descending order so as to see first the movies with the best predicting rating
 11. print predicted movies and original ratings
@@ -146,11 +146,11 @@ The result and predictions:
 ##### My predictions:
 ![image](https://user-images.githubusercontent.com/53232113/120266438-842e9f00-c267-11eb-80f8-099ca1fefd35.png)
 ##### Results
-The recommender movies for my ratings are correct. In this list we find that most of the movies have my taste which are mainly action movies. The time for data up to 100000 is less than one minute and is quite slow (a few hours) if using 10 millon dataset.
+The recommender movies for my ratings are correct. In this list we find that most of the movies have my taste which are mainly action movies. The time to process fmincg algorithm for data up to 100000  ratings is less than one minute and, for data with 10 millon ratings on the 'ml-10m.zip' dataset from movielens  is quite slow and ends up collapsing Matlab.
 
-**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX**
+**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGraf' algorithm**
 
-The input to get the predicted matrix for my ratings is the R sparse matrix. With the input, we get the prediction matrix p, sort it and print my best predicted movies.
+The input to get the predicted matrix for my ratings is the R sparse matrix. With the input, we process the codiGraf algorithm and  get the prediction matrix p, sort it and print my best predicted movies.
 
 For that, the process is as follows:
 1. get userid, movieId and ratings from table ratingsTbl.
