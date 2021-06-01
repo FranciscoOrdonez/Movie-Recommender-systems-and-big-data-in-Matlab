@@ -142,10 +142,15 @@ You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYST
 
 Results:
 
+Below there are two pictures one with the my original movie ratings and the predicted movies.  As my original ratings are rated with 5 and 4 for action and drama movies, and 0.5 and 1 for children movies, the predicted movies are mainly movies related to my tastes: action and drama movies.  I watched some of the predicted trailer movies and most of them match with my tastes eventhough I got a couple that are child movies or comedy movies that I do not like.
+##### my original rated movies
+![image](https://user-images.githubusercontent.com/53232113/120251997-d6ac9300-c248-11eb-9447-dfae5df96aa8.png)
+
+##### Predicted movies
 ![image](https://user-images.githubusercontent.com/53232113/120251686-f1323c80-c247-11eb-9116-31a1df463c7d.png)
 
 
-As my original ratings are rated with 5 and 4 for action and drama movies, and 0.5 and 1 for children movies, the predicted movies are mainly movies related to my tastes: action and drama movies.  I watched some of the predicted trailer movies and most of them match with my tastes eventhough I got a couple that are child movies or comedy movies that I do not like.
+
 
 
 **8. OBSERVATIONS**
