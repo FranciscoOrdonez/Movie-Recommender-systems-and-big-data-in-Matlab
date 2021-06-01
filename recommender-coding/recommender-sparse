@@ -11,17 +11,20 @@ clearvars -except R ratingsTbl ratingsDS tbl globalMean
 clearvars -except R ratingsTbl ratingsDS tbl globalMean
 [userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.rating);
 
+%create sparse table R
+%  R is a nu x nm matrix, containing ratings (1-5) of nu users by nm movies
 R = sparse(userId,movieId,rating);
 
 
 [nu,nm] = size(R)
-
+%get my ratings 
 my_ratings = my_ratings_action(nm);
 
 
 tab1 = tbl(:,[1,2]);
 array1 = table2array(tab1);
 
+% print my ratings
 fprintf('\n\nNew user ratings:\n');
 for i = 1:length(my_ratings)
     if my_ratings(i) > 0 
@@ -29,36 +32,34 @@ for i = 1:length(my_ratings)
     end
 end
 
-%  R is a nu x nm matrix, containing ratings (1-5) of nu users by nm movies
-y = find(my_ratings>0);
-ny = size(y);
-
-%for i = 1:ny
-%    x = y(i);
-%    R(nu+1,x) = my_ratings(y(i));
-%end
-
+% put my ratings in the last row of R
 for i = 1:nm
     if my_ratings(i) > 0
         R(nu+1,i) = my_ratings(i);
    end
 end
-%R(nu+1,movieid) = rating;
 
-% Your ratings:
+
+% put in a table my ratings:
 table(tbl.title(R(end,:)>0),nonzeros(R(end,:)),'VariableNames',{'Movie','Rating'});
 
+%get pamameters for algorith
 tol = 0.2; % Target mean absolute prediction error on existing ratings
 lambda = 1; % Regularization strength
 nf = 100; % Number of latent features
+
+%process cofiGrad algorith and get X and Theta out of R and parameters
 [X,Theta,movieBias,userBias] = cofiGrad(R,nf,tol,lambda);
 
+%create matrix p, prediction matrix
 p = X * Theta;
 
 [nu,nm] = size(R);
 
+%get from p... my predictions
 my_predictions = p(nu,:);
 
+%sort my predictions and print them
 [r, ix] = sort(my_predictions,'descend');
 for i=1:20
     j = ix(i);
@@ -67,6 +68,8 @@ for i=1:20
     end
     fprintf('Predicting rating %.1f for movie %s\n', my_predictions(j), array1(j,2));
 end
+
+%print my original ratings
 for i = 1:length(my_ratings)
     if i == 1
         fprintf('\n\nOriginal ratings provided:\n');
