@@ -8,7 +8,8 @@ nu = length(counts);
 [counts,usid] = max(counts);
 fprintf('There are %d unique user ID''s in the dataset',nu)
 
-%group by movieId[grp,inds] = findgroups(ratingsTbl.movieId);
+%group by movieId
+[grp,inds] = findgroups(ratingsTbl.movieId);
 inds = gather(inds);
 
 % find the number of unique movies in inds
