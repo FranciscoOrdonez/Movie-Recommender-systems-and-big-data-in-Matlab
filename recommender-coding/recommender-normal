@@ -1,0 +1,87 @@
+tbl = unique(ratingsTbl(:,[2,4,5,end-1,end,6:end-2]),'rows');
+tbl = gather(tbl)
+
+
+clearvars -except R ratingsTbl ratingsDS tbl globalMean
+[userId,movieId,rating] = gather(ratingsTbl.userId,ratingsTbl.movieId,ratingsTbl.rating);
+
+%  Y is a nm x nu matrix, containing ratings (1-5) of nm movies by nu users
+Y = sparse(movieId,userId,rating);
+
+%get my ratings from my_ratings_action function
+[nm,~] = size(Y);
+my_ratings = my_ratings_action(nm);
+
+tab1 = tbl(:,[1,2]);
+array1 = table2array(tab1);
+
+%print my ratings
+fprintf('\n\nNew user ratings:\n');
+for i = 1:length(my_ratings)
+    if my_ratings(i) > 0 
+        fprintf('Rated %d for %s\n', my_ratings(i), array1(i,2));
+    end
+end
+
+%put my ratings in 1st column of matrix
+y = find(my_ratings>0);
+ny = size(y);
+my_ratings = my_ratings';
+Y = [my_ratings Y];
+[nm,nu] = size(Y)
+
+%R matrix contains 1 if there a value and 0 if value of ratings es zero
+R = zeros(nm,nu);
+
+for i = 1:nu
+    R(:,i) = (Y(:,i) ~= 0);     
+end
+
+%  Normalize Ratings
+[Ynorm, Ymean] = normalizeRatings(Y, R);
+
+
+%  Useful Values
+num_users = size(Y, 2)
+num_movies = size(Y, 1)
+num_features = 100
+
+% Set Initial Parameters (Theta, X)
+X = randn(num_movies, num_features);
+Theta = randn(num_users, num_features);
+initial_parameters = [X(:); Theta(:)];
+
+% Set options for fmincg
+options = optimset('GradObj','on','MaxIter',100);
+
+% Set Regularization and process fmincg algorithm
+lambda = 10;
+theta = fmincg(@(t)(cofiCostFunc(t, Ynorm, R, num_users, num_movies, num_features,lambda)), initial_parameters, options);
+
+% Unfold the returned theta back into U and W
+X = reshape(theta(1:num_movies*num_features), num_movies, num_features);
+Theta = reshape(theta(num_movies*num_features+1:end), num_users, num_features);
+
+p = X * Theta';
+
+[nm,nu] = size(p);
+
+%get first column of matrix p
+my_predictions = p(:,1);
+
+[r, ix] = sort(my_predictions,'descend');
+for i=1:20
+    j = ix(i);
+    if i == 1
+        fprintf('\nTop recommendations for you:\n');
+    end
+    fprintf('Predicting rating %.1f for movie %s\n', my_predictions(j), array1(j,2));
+end
+for i = 1:length(my_ratings)
+    if i == 1
+        fprintf('\n\nOriginal ratings provided:\n');
+    end
+    if my_ratings(i) > 0 
+        fprintf('Rated %d for %s\n', my_ratings(i), array1(i,2));
+    end
+end
