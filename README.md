@@ -20,7 +20,7 @@ C. Collaborative Filtering- This system matches persons with similar interests a
 
 In [wikipedia](https://en.wikipedia.org/wiki/Recommender_system) you can find mainly content based filtering and collaborative filtering, plus some others recommender systems.
 
-Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with sparse matrices and  algorithm "cofiGrad", and another with  algorithm "fmincg", and observe their differences.
+Here, with MATLAB, we will extract and analyze big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with sparse matrices and  algorithm 'fmincg', and another with  algorithm "cofiGrad", and observe their differences.
 
 **2. EXTRACT**
 
@@ -102,7 +102,7 @@ To join ratingsTbl and moviesTbl on movieId you use the following code:
 ratingsTbl = join(ratingsTbl,moviesTbl)
 ```
 ##### Obtain a list of unique movie ID's and update the ID's in ratingsTbl 
-The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Running the code  to update the ratings table with the new movie IDs we obtain 10677 unique movies in the dataset. On the movie dataset "movieTbb" we have 10681 movies, three more than the ratings dataset.
+The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Running the code  to update the ratings table with the new movie IDs we obtain 10677 unique movies in the dataset. On the movie dataset "movieTbl" we have 10681 movies, three more than the ratings dataset.
 
 ##### Identify the most reviewed movie
 Run the code below to obtain the number of ratings for each movie in movieId and store it in the variable numRatings, then find the most reviewed movie in the dataset. The distribution of ratings/movie is also visualized. 
@@ -125,7 +125,7 @@ This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to
 
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here](recommender-coding/combine-analize-tables).
 
-**6. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH NORMAL MATRIX**
+**6. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'fmincg' ALGORITHM**
 The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, and one is there is a value between 0.5 up to 5. With the input and some variables , we get the prediction matrix p, sort it and print my best predicted movies.
 
 For that, the process is as follows:
@@ -141,7 +141,7 @@ For that, the process is as follows:
 10. sort my predictions in descending order so as to see first the movies with the best predicting rating
 11. print predicted movies and original ratings
 
-You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX" in [here](recommender-coding/recommender-normal). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
+You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH fmincg ALGORITHM" in [here](recommender-coding/recommender-normal). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
 The result and predictions:
 ##### My predictions:
 ![image](https://user-images.githubusercontent.com/53232113/120266438-842e9f00-c267-11eb-80f8-099ca1fefd35.png)
