@@ -126,6 +126,23 @@ You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here]
 
 **7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX**
 
+The input to get the predicted matrix for my ratings is the R sparse matrix. With the input, we get the prediction matrix p, sort it and print my best predicted movies.
+
+For that, the process is as follows:
+1. get userid, movieId and ratings from table ratingsTbl.
+2. create de sparse matrix R.
+3. get my_ratings from function my_ratings_action and put the in the last row of R
+4. get X and Theta out of cofiGrad algorith
+5. get prediction matrix p by X * Theta
+6. get my predictions out of the last row or p matrix
+7. sort my predictions in descending order so as to see first the movies with the best predicting rating
+8. print predicted movies and original ratings
+
+You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX" in [here](recommender-coding/recommender-sparse). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
+
+Results:
+
+As my original ratings are rated with 5 and 4 for action and drama movies, and 0.5 and 1 for children movies, the predicted movies are mainly movies related to my tastes: action and drama movies.  I watched some of the predicted trailer movies and most of them match with my tastes eventhough I got a couple that are child movies or comedy movies that I do not like.
 
 
 **8. OBSERVATIONS**
