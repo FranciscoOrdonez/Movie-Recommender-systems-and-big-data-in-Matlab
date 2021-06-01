@@ -98,8 +98,9 @@ By left-joining the ratings table with the dictionary table, we will effectively
 Because ratingsTbl is a tall table, the additional information from moviesTbl will be added to the ratings data automatically as chunks of data are read in from the csv file. This is different from an in-memory table where this information would be immediately added to the table variable (increasing its memory footprint). Also, no data (additional columns) will be added to the original data file, ratings.csv. 
 
 To join ratingsTbl and moviesTbl on movieId you use the following code:
+```
 ratingsTbl = join(ratingsTbl,moviesTbl)
-
+```
 ##### Obtain a list of unique movie ID's and update the ID's in ratingsTbl 
 The ratings dataset contains movie ratings organized by user, so that the dataset contains at least one rating from each user ID from 1 to the number of unique users in the dataset, nu. However, the same is not true for movie ID's as some movies in the original dataset were not rated by any user in this subset, and thus there are 'gaps' in the set of movie ID's that appear in ratingsTbl. To simplify later analysis, we use the findgroups function below to assign a new movie ID to each movie present in ratingsTbl, such that the movie ID's then form a contiguous set of integers from 1 to the number of unique movies in the dataset, nm. Running the code  to update the ratings table with the new movie IDs we obtain 10677 unique movies in the dataset. On the movie dataset "movieTbb" we have 10681 movies, three more than the ratings dataset.
 
