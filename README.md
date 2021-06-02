@@ -148,7 +148,7 @@ The result and predictions:
 ##### Results
 The recommender movies for my ratings are correct. In this list we find that most of the movies have my taste which are mainly action movies. The time to process fmincg algorithm for data up to 100000  ratings is less than one minute and, for data with 10 millon ratings on the 'ml-10m.zip' dataset from movielens  is quite slow and ends up collapsing Matlab.
 
-**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGraf' algorithm**
+**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGrad' algorithm**
 
 The input to get the predicted matrix for my ratings is the R sparse matrix. With the input, we process the codiGraf algorithm and  get the prediction matrix p, sort it and print my best predicted movies.
 
@@ -162,7 +162,7 @@ For that, the process is as follows:
 7. sort my predictions in descending order so as to see first the movies with the best predicting rating
 8. print predicted movies and original ratings
 
-You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH SPARSE MATRIX" in [here](recommender-coding/recommender-sparse). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
+You can find the MATLAB code for "COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGrad' algorithm in [here](recommender-coding/recommender-sparse). And your can check my movie ratings in [here](recommender-coding/my-ratings-action)
 
 Results:
 
