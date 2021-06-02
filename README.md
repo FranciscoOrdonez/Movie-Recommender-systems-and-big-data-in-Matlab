@@ -20,7 +20,7 @@ C. Collaborative Filtering- This system matches persons with similar interests a
 
 In [wikipedia](https://en.wikipedia.org/wiki/Recommender_system) you can find mainly content based filtering and collaborative filtering, plus some others recommender systems.
 
-Here, with MATLAB, we will extract and analyze ordinary data and  big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with   algorithm [fmincg](recommender-coding/fmincg), and another with  algorithm [cofiGrad](recommender-coding/cofiGrad), and observe their differences.
+Here, with MATLAB, we will extract and analyze ordinary data and  big movie data with datastore and tall tables, and explore two types of colaborative filtering recommender systems, one with   algorithm [fmincg](recommender-coding/fmincg) using the function [cofiCostFunc](recommender-coding/cofiCostFunc), and another with  algorithm [cofiGrad](recommender-coding/cofiGrad), and observe their differences.
 
 **2. EXTRACT**
 
