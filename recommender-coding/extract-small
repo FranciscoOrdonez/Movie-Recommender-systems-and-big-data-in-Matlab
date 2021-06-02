@@ -1,0 +1,16 @@
+% extract ml-latest-small dataset from grouplens for data manipulation
+clear;
+dataset = 'ml-latest-small';
+fname = 'movie-ratings.zip';
+websave(fname,['http://files.grouplens.org/datasets/movielens/',dataset,'.zip']);
+unzip(fname);
+delete(fname);
+
+moviesTbl = readtable([pwd '/', dataset, '/movies.csv'],'Delimiter',',','TextType','string')
+
+
+
+ratingsDS = tabularTextDatastore([pwd '/', dataset, '/ratings.csv'],...
+    'SelectedVariableNames',{'userId','movieId','rating'})
+
+ratingsTbl = tall(ratingsDS);
