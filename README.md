@@ -122,9 +122,11 @@ Grouping functions like grpstats and findgroups can be applied on tall data with
 This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
 
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here](recommender-coding/combine-analize-tables).
+
 **6. Extract small dataset**
 For the 'ml-latest-small' dataset, it contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018. Users were selected at random for inclusion. All users selected had rated at least 20 movies. The data are contained in the files links.csv, movies.csv, ratings.csv and tags.csv.
 You can find the MATLAB code for "Extract small dataset" in [here](recommender-coding/extract-small).
+
 **7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'fmincg' ALGORITHM**
 The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, or one if there is a value. With the inputs matrix Y and matrix R,  and some variables , process fmincg algorithm and  we get the prediction matrix p, sort it and print my best predicted movies.
 
