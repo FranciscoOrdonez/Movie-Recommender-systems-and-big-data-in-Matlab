@@ -124,8 +124,9 @@ Grouping functions like grpstats and findgroups can be applied on tall data with
 This plot shows that the average rating is between 3.3 to 4.0 from years 1900 to 1980, and from 1980 to 2020 it is about 3.4. Also, the number of ratings are less than 100000 between years 1900 to 1980, from 1990 to 2000 it is about 600000, and from 2000 to 2020 decreases from 600000 to zero.  
 
 You can find the MATLAB code for "COMBINE TABLES AND ANALYZE BIG DATA" in [here](recommender-coding/combine-analize-tables).
-
-**6. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'fmincg' ALGORITHM**
+**6. Extract small dataset**
+You can find the MATLAB code for "Extract small dataset" in [here](recommender-coding/extract-small).
+**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'fmincg' ALGORITHM**
 The input to get the predicted matrix for my ratings is the Y sparse matrix and a matrix R which contains a zero if there is no rating, or one if there is a value. With the inputs matrix Y and matrix R,  and some variables , process fmincg algorithm and  we get the prediction matrix p, sort it and print my best predicted movies.
 
 For that, the process is as follows:
@@ -148,7 +149,7 @@ The result and predictions:
 ##### Results
 The recommender movies for my ratings are correct. In this list we find that most of the movies have my taste which are mainly action movies. The time to process fmincg algorithm for data up to 100000  ratings is less than one minute and, for data with 10 millon ratings on the 'ml-10m.zip' dataset from movielens  is quite slow and ends up collapsing Matlab.
 
-**7. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGrad' algorithm**
+**8. COLLABORATIVE FILTERING MOVIE RECOMMENDER SYSTEM WITH 'cofiGrad' algorithm**
 
 The input to get the predicted matrix for my ratings is the R sparse matrix. With the input, we process the codiGraf algorithm and  get the prediction matrix p, sort it and print my best predicted movies.
 
@@ -173,8 +174,8 @@ Below there are two pictures one with the my original movie ratings and the pred
 ##### Predicted movies
 ![image](https://user-images.githubusercontent.com/53232113/120251686-f1323c80-c247-11eb-9116-31a1df463c7d.png)
 
-**8. OBSERVATIONS**
-The data for the algorithms used has been the 'ml-latest-small'(aprox 100.000 ratings) from grouplens.  When using the 'ml-10m' dataset (aprox 10 millon ratings) there is an error in cofiGrad algorithm.  To fix this bug, we grouped the userID in table ratingsTbl with commands:  
+**9. OBSERVATIONS**
+The data to ptocess the algorithms is 'ml-latest-small'(aprox 100.000 ratings) from grouplens.  When using the 'ml-10m' dataset (aprox 10 millon ratings) there is an error in cofiGrad algorithm.  To fix this bug, we grouped the userID in table ratingsTbl with commands:  
 ```
 [grp,inds] = findgroups(ratingsTbl.userId);
 inds = gather(inds);
@@ -187,8 +188,8 @@ ratingsTbl.userId = grp
 The bug is because there is a need to group the useid in orden to have all rows with some nonzero data.
 Also, we found out that with the 'ml-10m' dataset from grouplens neither 'codiGrad' nor 'fmincg' algorithms work as there is too much data for them and after hours of waiting they collapsed.
 
-**9. CONCLUSIONS**
-1. for large data sets these algorithms do not work, they are just too slow. Probably there are other algorithms or there is a need for a supercomputer to make them work.
+**10. CONCLUSIONS**
+1. for large data sets these algorithms do not work, they are just too slow(Mathworks online environment). Probably there are other algorithms or there is a need for a supercomputer to make them work.
 2. for data sets with around 100.000 ratings these algorithms work perfect. It took between 30 second to 5 minutes to finish.
 3. Using datastore and tall tables is the best way to work with big datasets. In this analysis we worked with two datasets, one with 100K ratings and another with 10000 k ratings.  In the small dataset there is no need for datastore and tall tables, and in big dataset(10000 k ratings) most of the processes worked in seconds or in a few minutes.
 4. Using sparse matrices is the best way to work with big datasets. Sparse matrices use less memory and are faster than ordinary matrices.
