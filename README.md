@@ -1,6 +1,6 @@
 # Movie-Recommender-systems-and-big-data-in-Matlab
 
-In this project we analyze movie dataset with datastore and tall tables, we use collaborative filtering recommender algorithms with sparse  matrices with algorithms 'fmincg', and "cofiGrad", and observe their differences, and finally we compare and conclude results with both approaches.  Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
+In this project we analyze movie dataset with datastore and tall tables, we use collaborative filtering recommender algorithms with sparse  matrices with algorithms [fmincg](recommender-coding/fmincg), and [cofiGrad](recommender-coding/cofiGrad), and observe their differences, and finally we compare and conclude results with both approaches.  Here, the recommender system is based on a movie set of data with a list of movies and users with rankings. Once a new user inputs a few movie rankings, the algorithm will recommend the movies to watch.
 
 
 
