@@ -1,4 +1,4 @@
-
+% extract ml-10m dataset from grouplens for data manipulation
 clear;
 dataset = 'ml-10m';
 fname = 'movie-ratings.zip';
@@ -33,6 +33,8 @@ ratingsTbl = tall(ratingsDS);
 
 %    'change variable names to:',{'userId','movieId','rating'})
 ratingsTbl.Properties.VariableNames{'Var1'} = 'userId';
+
+
 ratingsTbl.Properties.VariableNames{'Var3'} = 'movieId';
 ratingsTbl.Properties.VariableNames{'Var5'} = 'rating';
 
